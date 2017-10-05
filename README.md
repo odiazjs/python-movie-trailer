@@ -6,4 +6,4 @@ A website that shows favorite movies and trailers.
 
 # Run the project
 In the terminal run this command
-```~/docs/root siteRunner.py```
+```~/docs/root python siteRunner.py```
