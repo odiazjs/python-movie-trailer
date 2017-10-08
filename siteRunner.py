@@ -93,6 +93,9 @@ series = [
     breaking_bad,
     the_office]
 
+# Get the movies and series html content
+# and pass it to openSite which will generate
+# the final html full site to present
 movies_content = website.get_movies_html(movies)
 series_content = website.get_series_html(series)
 website.openSite(movies_content, series_content)
