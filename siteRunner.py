@@ -3,7 +3,6 @@ import serie
 import website
 
 # Create some movies
-movies_content = ''
 toy_story = movie.Movie(
     'Toy Story',
     'A cowboy doll is profoundly threatened' +
@@ -41,13 +40,9 @@ movies = [
     toy_story,
     moneyball,
     leage_of_their_own,
-    payback,
-    toy_story,
-    moneyball,
-    leage_of_their_own]
+    payback]
 
 # Create some series
-series_content = ''
 friends = serie.Serie(
     'Friends',
     'An American television sitcom, created by David Crane' +
@@ -88,14 +83,11 @@ series = [
     friends,
     breaking_bad,
     the_office,
-    orange_is_the_new_black,
-    friends,
-    breaking_bad,
-    the_office]
+    orange_is_the_new_black]
 
 # Get the movies and series html content
 # and pass it to openSite which will generate
 # the final html full site to present
 movies_content = website.get_movies_html(movies)
 series_content = website.get_series_html(series)
-website.openSite(movies_content, series_content)
+website.open_site(movies_content, series_content)

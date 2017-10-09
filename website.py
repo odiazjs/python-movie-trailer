@@ -11,7 +11,7 @@ def get_movies_html(movie_list):
     for movie in movie_list:
         
         movie_factory = movieFactory.MovieFactory(movie)
-        movies_content += movie_factory.formatHtmlContent()
+        movies_content += movie_factory.format_html_content()
     
     return movies_content
 
@@ -23,13 +23,13 @@ def get_series_html(serie_list):
     for serie in serie_list:
         
         serie_factory = serieFactory.SerieFactory(serie)
-        series_content += serie_factory.formatHtmlContent()
+        series_content += serie_factory.format_html_content()
 
     return series_content
 
 # inject html head, style and script
 # and create the html 
-def openSite(movies_content, series_content):
+def open_site(movies_content, series_content):
     
     main_page_head = '''
         <head>
@@ -137,14 +137,15 @@ def openSite(movies_content, series_content):
                 var player;
                 function onYouTubeIframeAPIReady(videoId) {
                     player = new YT.Player(videoId, {
-                    height: '300',
-                    width: '600',
-                    videoId: videoId,
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
+                        height: '300',
+                        width: '600',
+                        videoId: videoId,
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
                     });
+                    return player;
                 }
 
                 // 4. The API will call this function when the video player is ready.
@@ -158,12 +159,15 @@ def openSite(movies_content, series_content):
                 var done = false;
                 function onPlayerStateChange(event) {
                     if (event.data == YT.PlayerState.PLAYING && !done) {
-                    setTimeout(stopVideo, 6000);
-                    done = true;
+                        setTimeout(stopVideo, 6000);
+                        done = true;
                     }
                 }
                 function stopVideo() {
-                    player.stopVideo();
+                    var iframes = document.querySelectorAll('iframe');
+                    for (var i = 0; i < iframes.length; i++) {
+                        iframes[i].parentNode.removeChild(iframes[i]);
+                    }
                 }
             </script>
         </head>'''

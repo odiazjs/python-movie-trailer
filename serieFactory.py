@@ -1,11 +1,23 @@
-# couple a serie into
-# a stateful factory to be created
-# whenever needed to represent a serie
-
 class SerieFactory():
+    """ Couple a serie into
+        a stateful factory to be created
+        whenever needed to represent a serie
+
+    - **parameters**, **types**, **return** and **return types**::
+          :param serie: a serie instance object
+          :type serie: type Serie
+          :return: return SerieFactory instance
+          :rtype: the return type SerieFactory class
+          
+          :Example:
+          
+          serie = new Serie(...)
+          serie_factory = new SerieFactory(serie)
+          
+    """
     def __init__(self, serie):
         self.serie = serie
-        self.contentHtml = '''
+        self.content_html = '''
             <a href="#openModal{title}">
                 <div class="movie-item-container">
                     <div class="movie-item" style="background: url({img_url}) no-repeat scroll 0px 0px;"></div>
@@ -25,8 +37,8 @@ class SerieFactory():
             </div>
             '''
 
-    def formatHtmlContent(self):
-        return self.contentHtml.format(
+    def format_html_content(self):
+        return self.content_html.format(
             title=self.serie.title,
             description=self.serie.description,
             img_url=self.serie.poster_image_url,

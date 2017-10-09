@@ -3,6 +3,29 @@ import media
 
 
 class Movie(media.Media):
+    """This class is targeted to instantiate a movie object and
+    is represented by inherting from Media class since it shares 
+    a media properties.
+
+    - **parameters**, **types**, **return** and **return types**::
+          :param title: the title of the media clip
+          :param storyline: a short definition of the movie's story
+          :param poster_image_url: the url of the poster picture
+          :param trailer_url: the url of the movie's trailer clip
+          :param release_date: the date that the media clip was released
+          :type title: type string
+          :type story_line: type string
+          :type poster_image_url: type string
+          :type trailer_url: type string
+          :type release_date: type string
+          :return: return movie instance
+          :rtype: the return type Movie class
+          
+          :Example:
+          
+          video_clip = new Movie('The Movie', 'A wonderful tale.', 'poster.jpg', 'youtube.com/12345', 01/01/2015')
+          
+    """
     def __init__(
         self,
         title,

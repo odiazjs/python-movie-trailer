@@ -1,7 +1,7 @@
 
         <head>
             <meta charset="utf-8">
-            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+            
             <style>
                 body {
                     background-color: whitesmoke;
@@ -90,7 +90,7 @@
                     background: #ccc;
                 }
             </style>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+            
             <script>
                 // 2. This code loads the IFrame Player API code asynchronously.
                 var tag = document.createElement('script');
@@ -104,14 +104,15 @@
                 var player;
                 function onYouTubeIframeAPIReady(videoId) {
                     player = new YT.Player(videoId, {
-                    height: '300',
-                    width: '600',
-                    videoId: videoId,
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
+                        height: '300',
+                        width: '600',
+                        videoId: videoId,
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
                     });
+                    return player;
                 }
 
                 // 4. The API will call this function when the video player is ready.
@@ -125,12 +126,15 @@
                 var done = false;
                 function onPlayerStateChange(event) {
                     if (event.data == YT.PlayerState.PLAYING && !done) {
-                    setTimeout(stopVideo, 6000);
-                    done = true;
+                        setTimeout(stopVideo, 6000);
+                        done = true;
                     }
                 }
                 function stopVideo() {
-                    player.stopVideo();
+                    var iframes = document.querySelectorAll('iframe');
+                    for (var i = 0; i < iframes.length; i++) {
+                        iframes[i].parentNode.removeChild(iframes[i]);
+                    }
                 }
             </script>
         </head>
@@ -152,7 +156,7 @@
             </div>
         </a>
         <div id="openModalKYz2wyBy3kc" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
+            <div><a href="#close" title="Close" class="close" onclick="stopVideo(this)">X</a>
                 <h2>Toy Story</h2>
                 <p>A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boys room.</p>
                 <div id=KYz2wyBy3kc></div>
@@ -169,7 +173,7 @@
             </div>
         </a>
         <div id="openModal-4QPVo0UIzc" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
+            <div><a href="#close" title="Close" class="close" onclick="stopVideo(this)">X</a>
                 <h2>Moneyball</h2>
                 <p>Oakland Athletics general manager Billy Beanes successful attempt to assemble a baseball team on a lean budget by employing computer-generated analysis to acquire new players.</p>
                 <div id=-4QPVo0UIzc></div>
@@ -186,7 +190,7 @@
             </div>
         </a>
         <div id="openModalWcN392H2jx0" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
+            <div><a href="#close" title="Close" class="close" onclick="stopVideo(this)">X</a>
                 <h2>A League Of Their Own</h2>
                 <p>Two sisters join the first female professional baseball league and struggle to help it succeed.</p>
                 <div id=WcN392H2jx0></div>
@@ -203,61 +207,10 @@
             </div>
         </a>
         <div id="openModalvpV9eIXbVlU" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
+            <div><a href="#close" title="Close" class="close" onclick="stopVideo(this)">X</a>
                 <h2>Payback</h2>
                 <p>After a successful heist, Porter is shot by his wife and his best friend. They leave him there to die but when he recovers, he seeks revenge and wants his share of the money.</p>
                 <div id=vpV9eIXbVlU></div>
-            </div>
-        </div>
-        
-        <a href="#openModalKYz2wyBy3kc" onclick="onYouTubeIframeAPIReady('KYz2wyBy3kc')">
-            <div class="movie-item-container">
-                <div class="movie-item" style="background: url(https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-20810-m8zzyx_5670999f.jpeg) no-repeat scroll 0px 0px;"></div>
-                <div>
-                    <h3 class="movie-info truncate">Toy Story</h3>
-                    <p class="movie-info truncate">A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boys room.</p>
-                </div>
-            </div>
-        </a>
-        <div id="openModalKYz2wyBy3kc" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
-                <h2>Toy Story</h2>
-                <p>A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boys room.</p>
-                <div id=KYz2wyBy3kc></div>
-            </div>
-        </div>
-        
-        <a href="#openModal-4QPVo0UIzc" onclick="onYouTubeIframeAPIReady('-4QPVo0UIzc')">
-            <div class="movie-item-container">
-                <div class="movie-item" style="background: url(https://upload.wikimedia.org/wikipedia/en/2/2e/Moneyball_Poster.jpg) no-repeat scroll 0px 0px;"></div>
-                <div>
-                    <h3 class="movie-info truncate">Moneyball</h3>
-                    <p class="movie-info truncate">Oakland Athletics general manager Billy Beanes successful attempt to assemble a baseball team on a lean budget by employing computer-generated analysis to acquire new players.</p>
-                </div>
-            </div>
-        </a>
-        <div id="openModal-4QPVo0UIzc" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
-                <h2>Moneyball</h2>
-                <p>Oakland Athletics general manager Billy Beanes successful attempt to assemble a baseball team on a lean budget by employing computer-generated analysis to acquire new players.</p>
-                <div id=-4QPVo0UIzc></div>
-            </div>
-        </div>
-        
-        <a href="#openModalWcN392H2jx0" onclick="onYouTubeIframeAPIReady('WcN392H2jx0')">
-            <div class="movie-item-container">
-                <div class="movie-item" style="background: url(https://images-na.ssl-images-amazon.com/images/I/51x%2BvjamsHL.jpg) no-repeat scroll 0px 0px;"></div>
-                <div>
-                    <h3 class="movie-info truncate">A League Of Their Own</h3>
-                    <p class="movie-info truncate">Two sisters join the first female professional baseball league and struggle to help it succeed.</p>
-                </div>
-            </div>
-        </a>
-        <div id="openModalWcN392H2jx0" class="modalDialog">
-            <div><a href="#close" title="Close" class="close" onclick="stopVideo()">X</a>
-                <h2>A League Of Their Own</h2>
-                <p>Two sisters join the first female professional baseball league and struggle to help it succeed.</p>
-                <div id=WcN392H2jx0></div>
             </div>
         </div>
         
@@ -337,60 +290,6 @@
                     <h2>Orange Is The New Black</h2>
                     <p>Convicted of a decade old crime of transporting drug moneyto an ex-girlfriend, normally law abiding Piper Chapman is sentenced to a year and a half behind barsto face the reality of how life changing prison can really be.</p>
                     <div>5 Seasons</div>
-                </div>
-            </div>
-            
-            <a href="#openModalFriends">
-                <div class="movie-item-container">
-                    <div class="movie-item" style="background: url(https://www.merchandisingplaza.co.uk/43640/2/Posters-Friends-Friends-Poster-l.jpg) no-repeat scroll 0px 0px;"></div>
-                    <div>
-                        <h3 class="movie-info truncate">Friends</h3>
-                        <p class="movie-info truncate">An American television sitcom, created by David Crane and Marta Kauffman, which aired on NBC from September 22,1994, to May 6, 2004, lasting ten seasons.</p>
-                        <p class="movie-info">10 Seasons</p>
-                    </div>
-                </div>
-            </a>
-            <div id="openModalFriends" class="modalDialog">
-                <div><a href="#close" title="Close" class="close">X</a>
-                    <h2>Friends</h2>
-                    <p>An American television sitcom, created by David Crane and Marta Kauffman, which aired on NBC from September 22,1994, to May 6, 2004, lasting ten seasons.</p>
-                    <div>10 Seasons</div>
-                </div>
-            </div>
-            
-            <a href="#openModalBreaking Bad">
-                <div class="movie-item-container">
-                    <div class="movie-item" style="background: url(http://www.wired.com/images_blogs/underwire/2013/09/BreakingBadComingSoon.jpg) no-repeat scroll 0px 0px;"></div>
-                    <div>
-                        <h3 class="movie-info truncate">Breaking Bad</h3>
-                        <p class="movie-info truncate">An American neo-western crime drama television series created and produced by Vince Gilligan. The show originally aired on the AMC network for five seasons, from January 08 - September 13.</p>
-                        <p class="movie-info">5 Seasons</p>
-                    </div>
-                </div>
-            </a>
-            <div id="openModalBreaking Bad" class="modalDialog">
-                <div><a href="#close" title="Close" class="close">X</a>
-                    <h2>Breaking Bad</h2>
-                    <p>An American neo-western crime drama television series created and produced by Vince Gilligan. The show originally aired on the AMC network for five seasons, from January 08 - September 13.</p>
-                    <div>5 Seasons</div>
-                </div>
-            </div>
-            
-            <a href="#openModalThe Office">
-                <div class="movie-item-container">
-                    <div class="movie-item" style="background: url(https://pbs.twimg.com/profile_images/734141362031984640/2I-QZZkR.jpg) no-repeat scroll 0px 0px;"></div>
-                    <div>
-                        <h3 class="movie-info truncate">The Office</h3>
-                        <p class="movie-info truncate">An American television comedy that aired on NBC from March 05to May 13. Its an adaptation of the BBC series of the same name.</p>
-                        <p class="movie-info">10 Seasons</p>
-                    </div>
-                </div>
-            </a>
-            <div id="openModalThe Office" class="modalDialog">
-                <div><a href="#close" title="Close" class="close">X</a>
-                    <h2>The Office</h2>
-                    <p>An American television comedy that aired on NBC from March 05to May 13. Its an adaptation of the BBC series of the same name.</p>
-                    <div>10 Seasons</div>
                 </div>
             </div>
             
